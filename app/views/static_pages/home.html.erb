@@ -1,0 +1,31 @@
+<% if logged_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="stats">
+       <td><%= gravatar_for current_user %></td>
+        <td><%= link_to current_user.name, current_user %></td>
+        <%= render "shared/stats" %>
+      </section>
+    </aside>
+    <label class="button-inline">
+      <%= button_to t("words_list"), words_path, :class => "btn btn-lg btn-primary", method: :get %>
+    </label>
+    <label class="button-inline">
+      <%= button_to t("lesson"), categories_path, :class => "btn btn-lg btn-primary", method: :get %>
+    </label>
+    <div class="col-md-8">
+      <h3><%= t "activity" %></h3>
+      <div class="panel-body">
+        <%= render @activities %>
+      </div>
+      <div class="panel-footer text-center">
+        <%= will_paginate @activities %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="center jumbotron">
+    <h1><%= t "welcome" %></h1>
+    <%= link_to t("startnow"), signup_path, class: "btn btn-lg btn-primary" %>
+  </div>
+<% end %>

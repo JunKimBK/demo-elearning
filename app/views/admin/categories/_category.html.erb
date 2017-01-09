@@ -1,0 +1,17 @@
+<% @categories.each do |category| %>
+  <tr>
+    <td><%= category.id %></td>
+    <td><%= category.name %></td>
+    <td><%= image_tag category.picture.url %></td>
+    <td><%= link_to t("delete"), admin_category_path(category),
+      method: :delete,
+      data: { confirm: t("are_you_sure") }, class: "btn btn-danger" %>
+    </td>
+    <td><%= link_to t("edit"), edit_admin_category_path(category),
+      class: "btn btn-primary"%>
+    </td>
+    <td><%= link_to t("get_words_of_category"),
+      [:admin, category, :words], class: "btn btn-success"%>
+    </td>
+  </tr>
+<% end %>

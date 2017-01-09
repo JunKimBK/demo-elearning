@@ -1,0 +1,25 @@
+<% provide :title, t("all_words") %>
+<div class="container">
+  <h1><%= t "all_words" %></h1>
+  <div class="row text-right" style="padding-bottom: 20px">
+    <%= link_to t("create_new_word"), new_admin_word_path,
+      class: "btn btn-lg btn-primary" %>
+  </div>
+  <%= will_paginate %>
+    <div class="">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th><%= t "id" %></th>
+            <th><%= t "words" %></th>
+            <th><%= t "delete" %></th>
+            <th><%= t "edit" %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render @words %>
+        </tbody>
+      </table>
+    </div>
+  <%= will_paginate %>
+</div>

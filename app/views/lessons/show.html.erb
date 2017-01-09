@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <div class="row text-center">
+    <h1><%= @lesson.category.name %></h1>
+  </div>
+</div>
+<table class="table">
+  <thead>
+    <th style="color:blue"><%= t "word" %></th>
+    <th style="color:blue"><%= t "content" %></th>
+    <th style="color:blue"><%= t "mark" %></th>
+  </thead>
+    <% @results.each do |result| %>
+    <tr>
+      <td><%= result.word.content %></td>
+      <td><%= result.meaning.content %></td>
+      <td>
+        <%if result.meaning.is_correct? %>
+          <span class="glyphicon glyphicon-check" style="color:green"></span>
+        <% else %>
+          <span class="glyphicon glyphicon-ban-circle" style="color:red">
+          </span>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<div class="container text-center">
+  <h3><%= t "your_score"%>
+    <span class="text-red">
+      <%= @results.choosen_word_correct.count %><%= t "five" %>
+    </span>
+  </h3>
+  <label class="button-inline">
+    <%= button_to t("end_lesson"), categories_path, :class => "btn btn-lg btn-primary", method: :get %>
+  </label>
+</div>

@@ -1,0 +1,28 @@
+<% provide :title, t("edit_word") %>
+<h2><%= t "edit_word" %></h2>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3 button_ra" >
+    <%= form_for [:admin, @word] do |f| %>
+    <div id = "area_child">
+      <%= render "shared/error_messages", object: f.object %>
+      <h3> Choosen Categories </h3>
+      <%= f.collection_select :category_id, @categories, :id, :name %>
+        <%= f.label :content %>
+        <%= f.text_field :content, class: "form-control" %>
+        <%= f.label :meanings %>
+        <%= f.fields_for :meanings do |builder| %>
+          <div class="child">
+            <td><%= builder.text_field :content, class: "form-control" %></td>
+            <%= f.label :is_correct %>
+            <%= builder.check_box :is_correct, class: "option_checkbox" %><br>
+            <%= builder.hidden_field :_destroy, class: "destroy form-control" %>
+            <%= link_to "remove", "javascript:void(0)", class: "remove_mean" %>
+          </div>
+        <% end %>
+    </div>
+      <%= link_to t("add_more"), "javascript:void(0)", class: "add_mean" %>
+      <%= f.submit t("edit"), class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+<%= javascript_include_tag "words", "data-turbolinks-track": true %>

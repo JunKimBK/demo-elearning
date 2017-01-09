@@ -1,0 +1,24 @@
+<% if logged_in? %>
+  <div class="container" >
+    <%= form_for [category, category.lessons.build] do |f| %>
+      <div class="row text-center well" style="padding: 10px">
+        <div class="row">
+          <h2><%= category.name %></h2>
+        </div>
+        <div class="row">
+          <%= image_tag category.picture.url %>
+        </div>
+        <div class="row" >
+          <h5><%= t "you_learned" %> <%= category.lessons.count %> <%= t "time" %>
+            / <%= category.words.count %> <%= t "words" %>
+          </h5>
+        </div>
+        <div class="row" >
+          <div class="col-md-offset-4 col-md-4">
+            <%= f.submit t("start"), class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

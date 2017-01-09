@@ -1,0 +1,10 @@
+<tr>
+  <td><%= word.id %></td>
+  <td><%= word.content %></td>
+  <td><%= link_to t("delete"), admin_word_path(word), method: :delete,
+    data: {confirm: t("are_you_sure")}, class: "btn btn-danger" %>
+  </td>
+  <td><%= link_to t("edit"),edit_admin_word_path(word),
+    class: "btn btn-primary"%>
+  </td>
+</tr>

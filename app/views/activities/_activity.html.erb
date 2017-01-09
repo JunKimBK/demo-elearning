@@ -1,0 +1,12 @@
+<div class="row activity-item">
+  <%= gravatar_for @user, size: 40 %>
+  <%= user_name activity %>
+  <%= action_message activity %>
+  <%= target_link activity %>
+  <span class="pull-right">
+    <small>
+      <%= t "time_activities",
+      time: time_ago_in_words(activity.created_at) %>
+    </small>
+  </span>
+</div>
